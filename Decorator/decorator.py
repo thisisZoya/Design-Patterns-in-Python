@@ -24,7 +24,15 @@ class PageDecorator(Page, abc.ABC):  # Abstract Decorator
     @abc.abstractmethod
     def show(self):
         pass
+class PageLogDecorator(PageDecorator): # Concrete Decorator 
+    def show(self):
+        print('Logging page view...')
+        self._component.show()
 
+class PageCacheDecorator(PageDecorator): # Concrete Decorator 
+    def show(self):
+        print('Checking cache...')
+        self._component.show()
 
 class PageAuthDecorator(PageDecorator):  # Concrete Decorator
     def show(self):
